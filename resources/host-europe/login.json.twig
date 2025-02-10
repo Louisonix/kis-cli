@@ -1,0 +1,174 @@
+{
+    "title": "host-europe-login",
+    "steps": [
+        {
+            "type": "setViewport",
+            "width": 2189,
+            "height": 1057,
+            "deviceScaleFactor": 1,
+            "isMobile": false,
+            "hasTouch": false,
+            "isLandscape": false
+        },
+        {
+            "type": "navigate",
+            "url": "https://sso.hosteurope.de/?app=kis&path=%2F"
+        },
+        {
+            "type": "customStep",
+            "target": "button[type='submit']",
+            "name": "waitForVisibility",
+            "assertedEvents": [
+                {
+                    "type": "navigation",
+                    "url": "https://sso.hosteurope.de/?app=kis&path=%2F",
+                    "title": "Login | Host Europe"
+                }
+            ]
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/E-Mail / Nutzername"
+                ],
+                [
+                    "#\\31 "
+                ],
+                [
+                    "xpath///*[@id=\"1\"]"
+                ],
+                [
+                    "pierce/#\\31 "
+                ]
+            ],
+            "offsetY": 7.779876708984375,
+            "offsetX": 137.21734619140625
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/E-Mail / Nutzername"
+                ],
+                [
+                    "#\\31 "
+                ],
+                [
+                    "xpath///*[@id=\"1\"]"
+                ],
+                [
+                    "pierce/#\\31 "
+                ]
+            ],
+            "offsetY": 22.779876708984375,
+            "offsetX": 242.21734619140625
+        },
+        {
+            "type": "change",
+            "value": "{{config['username']}}",
+            "selectors": [
+                [
+                    "aria/E-Mail / Nutzername"
+                ],
+                [
+                    "#\\31 "
+                ],
+                [
+                    "xpath///*[@id=\"1\"]"
+                ],
+                [
+                    "pierce/#\\31 "
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Passwort"
+                ],
+                [
+                    "#\\32 "
+                ],
+                [
+                    "xpath///*[@id=\"2\"]"
+                ],
+                [
+                    "pierce/#\\32 "
+                ]
+            ],
+            "offsetY": 24.9375,
+            "offsetX": 135.21734619140625
+        },
+        {
+            "type": "change",
+            "value": "{{config['password']}}",
+            "selectors": [
+                [
+                    "aria/Passwort"
+                ],
+                [
+                    "#\\32 "
+                ],
+                [
+                    "xpath///*[@id=\"2\"]"
+                ],
+                [
+                    "pierce/#\\32"
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                "span > div div",
+                "xpath///*[@id=\"root\"]/div[2]/div/div[1]/main/div/div/div/div/div/div[1]/form/span/button/span/div/span/div",
+                "pierce/span > div div"
+            ],
+            "offsetX": 136.48907470703125,
+            "offsetY": 7.35870361328125,
+            "button": "primary"
+        },
+
+        {
+            "type": "customStep",
+            "name": "waitForDocumentReady"
+        },
+        {
+            "type": "waitForVisibility",
+            "selectors": [".UPM__PrivacyModal"]
+        },
+        {
+            "type": "customStep",
+            "name": "js",
+            "target": "$('.UPM__PrivacyModal button')[4].click();"
+        },
+        {
+            "type": "waitForVisibility",
+            "selectors": ["#mainMenu"]
+        },
+        {
+            "type": "waitForVisibility",
+            "selectors": ["#mainMenu .fl_customerInfo"]
+        },
+        {
+            "type": "customStep",
+            "name": "echo",
+            "target": "return document.querySelector('#mainMenu .fl_customerInfo').innerText;"
+        },
+        {
+            "type": "customStep",
+            "name": "js",
+            "parameters": {
+                "script": "window._wd_set_result(window.he_throwErrorOnFailedLogin());"
+            }
+        }
+    ]
+}

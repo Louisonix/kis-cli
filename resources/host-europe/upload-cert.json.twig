@@ -1,0 +1,103 @@
+{
+    "title": "Upload SSL certificate for vhost",
+    "steps": [
+        {
+            "type": "setViewport",
+            "width": 1954,
+            "height": 1057,
+            "deviceScaleFactor": 1,
+            "isMobile": false,
+            "hasTouch": false,
+            "isLandscape": false
+        },
+        {
+            "type": "navigate",
+            {% if vhost_id == 'default' %} 
+                "url": "https://kis.hosteurope.de/administration/webhosting/admin.php?menu=6&wp_id={{webpack_id}}&mode=sslupload",
+            {% else %}
+                "url": "https://kis.hosteurope.de/administration/webhosting/admin.php?menu=6&wp_id={{webpack_id}}&mode=sslupload&v_id={{vhost_id}}",
+            {% endif %}
+            "assertedEvents": [
+                {
+                    "type": "navigation",
+                    {% if vhost_id == 'default' %}
+                        "url": "https://kis.hosteurope.de/administration/webhosting/admin.php?menu=6&wp_id={{webpack_id}}&mode=sslupload",
+                    {% else %}
+                        "url": "https://kis.hosteurope.de/administration/webhosting/admin.php?menu=6&wp_id={{webpack_id}}&mode=sslupload&v_id={{vhost_id}}",
+                    {% endif %}
+                    "title": "HE-KIS - Produktverwaltung > Webhosting > Konfigurieren > Sicherheit & SSL > SSL-Zertifikat ersetzen"
+                }
+            ]
+        },
+        {
+            "type": "change",
+            "value": "{{cert_fs_path}}",
+            "selectors": [
+                [
+                    "aria/Datei auswählen: fullchain.cer[role=\"button\"]"
+                ],
+                [
+                    "tr:nth-of-type(2) input"
+                ],
+                [
+                    "xpath///*[@id=\"contentcol\"]/div/form/table/tbody/tr[2]/td[2]/input"
+                ],
+                [
+                    "pierce/tr:nth-of-type(2) input"
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "change",
+            "value": "{{key_fs_path}}",
+            "selectors": [
+                [
+                    "tr:nth-of-type(3) input"
+                ],
+                [
+                    "xpath///*[@id=\"contentcol\"]/div/form/table/tbody/tr[3]/td[2]/input"
+                ],
+                [
+                    "pierce/tr:nth-of-type(3) input"
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "selectors": [
+                [
+                    "aria/Absenden[role=\"button\"]"
+                ],
+                [
+                    "tr:nth-of-type(6) input"
+                ],
+                [
+                    "xpath///*[@id=\"contentcol\"]/div/form/table/tbody/tr[6]/td/input"
+                ],
+                [
+                    "pierce/tr:nth-of-type(6) input"
+                ],
+                [
+                    "text/Absenden"
+                ]
+            ],
+            "offsetY": 13.478240966796875,
+            "offsetX": 38.62493896484375,
+            "assertedEvents": [
+                {
+                    "type": "navigation",
+                    "url": "https://kis.hosteurope.de/administration/webhosting/admin.php",
+                    "title": ""
+                }
+            ]
+        },
+        {
+            "type": "customStep",
+            "name": "js",
+            "source": "window._wd_set_result($('.fl_welcome')[0].innerText);"
+        }
+    ]
+}

@@ -1,0 +1,63 @@
+{
+    "title": "Host Europe - Lösche einen DNS Eintrag",
+    "steps": [
+        {
+            "type": "setViewport",
+            "width": 1545,
+            "height": 1064,
+            "deviceScaleFactor": 1,
+            "isMobile": false,
+            "hasTouch": false,
+            "isLandscape": false
+        },
+        {
+            "type": "navigate",
+            "url": "https://kis.hosteurope.de/administration/domainservices/index.php?record={{record}}&pointer={{pointer}}&submit=L%F6schen&menu=2&mode=autodns&domain={{domain}}&submode=edit&truemode=host&hostid={{hostid}}"
+        },
+        {
+            "type": "customStep",
+            "name": "waitForDocumentReady"
+        },
+        {
+            "type": "customStep",
+            "name": "waitForElement",
+            "visible": true,
+            "selectors": [
+                "input.fo"
+            ]
+        },
+        {
+            "type": "customStep",
+            "name": "echo",
+            "title": "he_findDeleteDnsRecordLink",
+            "source": "return window.he_findDeleteDnsRecordLink();"
+        },
+        {
+            "type": "customStep",
+            "name": "js",
+            "source": "window._wd_set_result(window.he_followDeleteDnsRecordLink());"
+        },
+        {
+            "type": "customStep",
+            "name": "sleep",
+            "target": 3
+        },
+        {
+            "type": "customStep",
+            "name": "waitForElement",
+            "visible": true,
+            "selectors": [
+                "input.fo"
+            ]
+        },
+        {
+            "type": "navigate",
+            "url": "https://kis.hosteurope.de/administration/domainservices/index.php?menu=2&mode=autodns&submode=edit&domain={{domain}}"
+        },
+        {
+            "type": "customStep",
+            "name": "js",
+            "source": "window._wd_set_result(window.he_readDnsRecordTable());"
+        }
+    ]
+}

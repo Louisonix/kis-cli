@@ -1,0 +1,27 @@
+{
+    "title": "Host Europe - List Domains",
+    "steps": [
+        {
+            "type": "setViewport",
+            "width": 1545,
+            "height": 1064,
+            "deviceScaleFactor": 1,
+            "isMobile": false,
+            "hasTouch": false,
+            "isLandscape": false
+        },
+        {
+            "type": "navigate",
+            "url": "https://kis.hosteurope.de/administration/webhosting/admin.php?menu=6&mode=ssl_list&wp_id={{webpack_id}}"
+        },
+        {
+            "type": "waitForVisibility",
+            "selectors": ["form[name=\"vhosts\"]"]
+        },
+        {
+            "type": "customStep",
+            "name": "js",
+            "source": "window._wd_set_result(window.he_readSSLEndpoints());"
+        }
+    ]
+}

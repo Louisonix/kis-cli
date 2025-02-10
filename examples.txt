@@ -1,0 +1,31 @@
+# Generate DNS Challenges and upload the answers to KIS (required to generate a fresh certificate):
+./bin/console acme:init -d "domain-one,*.domain-one,domain-two.de,*.domain-two.de,domain-three.de,*.domain-three.de"
+
+# Verify DNS challenges and generate a new certificate: 
+./bin/console acme:verify
+
+# Upload certificate: 
+./bin/console kis:upload --webpack-id=1231234 --vhosts="*"
+
+
+
+Examples for the multi tool (deprecated): 
+
+# list dns records for domains: 
+./bin/console multi --list-dns-records -d "domain-one,domain-two.de,domain-three.de"
+
+# delete acme challenge dns records:
+./bin/console multi --delete-dns-record="TXT/_acme-challenge.domain-one" -d "domain-one"
+./bin/console multi --delete-dns-record="TXT/_acme-challenge.domain-three.de" -d "domain-three.de"
+./bin/console multi --delete-dns-record="TXT/_acme-challenge.domain-two.de" -d "domain-two.de"
+
+# issue DNS challenges: 
+./bin/console multi --acme-issue -d "domain-one,*.domain-one,domain-two.de,*.domain-two.de,domain-three.de,*.domain-three.de"
+
+# Renew certs (including upload): 
+./bin/console multi --acme-renew -d "domain-one,*.domain-one,domain-two.de,*.domain-two.de,domain-three.de,*.domain-three.de" --contract=316859 --vhosts="*"
+
+# Upload Certs: 
+./bin/console multi --upload -d "domain-one,*.domain-one,domain-two.de,*.domain-two.de,domain-three.de,*.domain-three.de" --contract=316859 --vhosts="*"
+
+# list ssl endpoints (vhosts):
