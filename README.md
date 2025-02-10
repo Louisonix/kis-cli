@@ -46,7 +46,7 @@ Run the following command to make sure this tool can access KIS with the supplie
 
 ## Certificate renew
 
-To isse a new renewable certificate, run the follwing commands: 
+To issue a new renewable certificate, run the follwing commands: 
 
 ```
 # Generate DNS Challenges and upload the answers to KIS (required to generate a fresh certificate): 
